@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-navbar>
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+ <ion-grid>
+
+  <ion-row>
+
+    <ion-col class="col">
+        To Do ( {{numOfnotes}} )
+      <ion-list 
+      [dragula]='"first-bag"'
+       [dragulaModel]='items'>
+       
+       <ion-item  *ngFor="let item of items; index as i" [attr.data-index]="i"
+      id="{{ item.name }}" padding>
+      <button ion-button  class= "{{item.color}}" (click)="shownote(item.name,item.desc,item.color,i)">
+         {{ item.name }} 
+        </button>
+      </ion-item>
+      </ion-list> 
+      </ion-col>
+
+    <ion-col class="col">
+        Doing ( {{numOfnotes2}} )
+      <ion-list 
+      [dragula]='"first-bag"'
+       [dragulaModel]='items2'>
+       
+       <ion-item  *ngFor="let item of items2; index as i" [attr.data-index]="i"
+      id="{{ item.name }}" padding>
+      <button ion-button   class= "{{item.color}}" (click)="shownote2(item.name,item.desc,item.color,i)">
+         {{ item.name }}
+        </button>
+      </ion-item>
+      </ion-list> 
+      </ion-col>
+
+    <ion-col class="col">
+        Done ( {{numOfnotes3}} )
+        <ion-list 
+         [dragula]='"first-bag"'
+         [dragulaModel]='items3'>
+         
+         <ion-item  *ngFor="let item of items3; index as i" [attr.data-index]="i"
+        id="{{ item.name }}" padding>
+        <button ion-button  class= "{{item.color}}" (click)="shownote3(item.name,item.desc,item.color,i)">
+           {{ item.name }}
+          </button>
+        </ion-item>
+        </ion-list> 
+        </ion-col>
+
+        
+        <ion-col
+        
+        [dragula]='"first-bag"'
+        [dragulaModel]='garbage'>Çöp
+
+        </ion-col>
+        
+      </ion-row>
+      <!--
+    <ion-row >
+      <ion-col>
+        <ion-list [dragula]='"first-bag"'
+              [dragulaModel]='items'>
+              <ion-item *ngFor="let item of items">
+                  <button ion-button  class= "{{item.color}}" (click)="shownote(item.name,item.desc)">
+                      {{ item.name }} 
+                     </button>
+              </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col *ngFor="let col of maxcols">
+          <ion-list [dragula]='"first-bag"'
+            [dragulaModel]='items'>
+              <ion-item *ngFor="let item of items"></ion-item>
+           </ion-list>
+      </ion-col>
+       </ion-row>
+      -->
+
+ </ion-grid>
+
+
+  <ion-item>
+    <ion-label>Kolon Seç</ion-label>
+    <ion-select [(ngModel)]="column">
+        <ion-option value="1">To Do</ion-option>
+        <ion-option value="2">Doing</ion-option>
+        <ion-option value="3">Done</ion-option> 
+    </ion-select>
+  </ion-item>
+<ion-item>
+    <ion-label>Renk Seç</ion-label>
+    <ion-select [(ngModel)]="color">
+        <ion-option value="red">Kırmızı</ion-option>
+        <ion-option value="green">Yeşil</ion-option>
+        <ion-option value="yellow">Sarı</ion-option>
+        <ion-option value="gray">Gri</ion-option>  
+      </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label floating> Açıklama Gir</ion-label>
+  <ion-input [(ngModel)]="desc"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label floating > Başlık Gir</ion-label>
+    <ion-input [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+<ion-item>
+  <button ion-button icon-end color="secondary" large (click)="addnote(column,color,desc,name)">Ekle<ion-icon name="add"></ion-icon></button>
+</ion-item>
+</ion-content>
